@@ -1,5 +1,0 @@
-username: steve
-email: steve@gmail.com
-first_name: Steve
-last_name: Scripted
-password: Passw0rd
