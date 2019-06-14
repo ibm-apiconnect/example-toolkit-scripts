@@ -55,4 +55,4 @@ Execute these scripts in the order listed above.
 
 ## Obtaining the toolkit
 
-Please see [Working with the toolkit] (https://www.ibm.com/support/knowledgecenter/en/SSMNED_2018/com.ibm.apic.toolkit.doc/capim_cli_working_with.html) for information about downloading and using the toolkit. 
+Please see [Working with the toolkit](https://www.ibm.com/support/knowledgecenter/en/SSMNED_2018/com.ibm.apic.toolkit.doc/capim_cli_working_with.html) for information about downloading and using the toolkit. 
