@@ -27,7 +27,7 @@ The script **doapic-manprod** performs the following tasks:
 * Stages a new product version
 * Supercedes the existing published product with the new one
 * Configures subscription migration
-* Migrates existing subscriptions to the old product to the new product
+* Migrates existing subscriptions from the old product to the new product
 
 For convenience, two files undo the work performed by the others.  These are as follows.
 
