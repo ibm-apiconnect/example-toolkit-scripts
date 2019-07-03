@@ -3,8 +3,8 @@ setlocal
 set server=%1
 set user=admin
 set password=%2
-set user_file=user-shells.txt
-set porg_name=shellorg
+set user_file=user-steve.txt
+set porg_name=steveorg
 set api_file=findbrancha.yaml
 set prod_file=brancha_prod.yaml
 
