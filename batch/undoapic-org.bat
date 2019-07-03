@@ -3,7 +3,7 @@ setlocal
 set server=%1
 set user=admin
 set password=%2
-set user_file=user-shells.txt
+set user_file=user-steve.txt
 set porg_name=shellorg
 
 
