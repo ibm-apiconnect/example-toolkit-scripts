@@ -4,7 +4,7 @@ set server=%1
 set user=admin
 set password=%2
 set user_file=user-steve.txt
-set porg_name=shellorg
+set porg_name=steveorg
 
 
 for /F "tokens=1,2 delims= " %%a in (%user_file%) do (
