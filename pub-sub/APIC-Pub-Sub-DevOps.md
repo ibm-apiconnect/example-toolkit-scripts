@@ -1,7 +1,7 @@
 # IBM API Connect  
 > ## DevOps for API Products & Consumer Subscriptions  
 >  Ravi Ramnarayan  
->  &copy; IBM v1.3  2021-03-22    
+>  &copy; IBM v1.4  2021-03-24    
 
 ## Goals  
   - Ensure business continuity while publishing new versions of API Products  
@@ -16,7 +16,7 @@ This article provides sample code to implement DevOps processes described in [AP
 
 ## <a name="Pub Sub Flow"></a> Pub Sub Flow  
 The goal is to implement devops processes at scale.  
-#### <a name="Simple Scenario"></a> Simple Scenario  
+#### <a name="Simple-Scenario"></a> Simple Scenario  
 - API ***api:v1*** is in Product ***product:v1*** and available to consumers through ***plan-A*** & ***plan-B***   
 - Consumer applications, ***con-app-1*** & ***con-app-2*** subscribe to ***plan-A***   
 - Migrate Subscriptions which belong to a single consumer organization ***con-app-2*** to ***product:v2*** and ***plan-B***   
@@ -67,4 +67,4 @@ The following steps implement the [**Simple Scenario**](#Simple-Scenario) and mi
 - Scripts were developed and verified on IBM API Connect v10.0.1.x
 
 ### Usage  
-This document and the sample scripts show what is possible with Product Versions & Consumer Subscriptions. Does it fit into your overall process? 
+This document and the sample scripts show what is possible with Product Versions & Consumer Subscriptions. Does it fit into your overall process?

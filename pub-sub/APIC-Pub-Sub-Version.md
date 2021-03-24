@@ -1,7 +1,7 @@
 # IBM API Connect
 > ## Governance Models & Version Control for API Products
 >  Ravi Ramnarayan  
->  &copy; IBM v1.2  2021-03-19    
+>  &copy; IBM v1.3  2021-03-24    
 
 
 ## Goals  
@@ -12,18 +12,18 @@
   - Deprecate and Retire API Products gracefully  
 
 ## API Product Lifecycle  
-The diagram below is advertisement to lead you to the core of API management [The Product lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.apionprem.doc/capim_product_lifecycle.html).  
+The diagram below is advertisement to lead you to the core of API management [The Product lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/capim_product_lifecycle.html).  
 
 ![API Product Lifecycle](./images/A-04-ProductLifecycle.jpg)
 
-You are familiar with publishing API Products. You may not have looked at Deprecate and Retire while racing towards implementation. In addition to explicit Deprecation, you can do the same implicitly by [Superseding a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.apionprem.doc/task_superseding_a_product.html?view=kc). Similarly, [Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.apionprem.doc/task_replacing_a_product.html?view=kc) will Retire the existing API Product.
-> **Note**: *[Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.apionprem.doc/task_replacing_a_product.html?view=kc)* could be a new version of the same Product or a completely different Product.  
+You are familiar with publishing API Products. You may not have looked at Deprecate and Retire while racing towards implementation. In addition to explicit Deprecation, you can do the same implicitly by [Superseding a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_superseding_a_product.html). Similarly, [Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_replacing_a_product.html) will Retire the existing API Product.
+> **Note**: *[Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_replacing_a_product.html)* could be a new version of the same Product or a completely different Product.  
 
 ## API Connect options  
 You can configure API Connect (APIC) to suit your needs.  
 
 #### Do you want strict version control for API Products?  
-[Creating and configuring Catalogs](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.apionprem.doc/create_env.html) contains steps to enable *Production Mode*. Once enabled, you must publish new versions of API Products. You will not be able to publish API Products with the same version number as existing products.  
+[Creating and configuring Catalogs](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/create_env.html) contains steps to enable *Production Mode*. Once enabled, you must publish new versions of API Products. You will not be able to publish API Products with the same version number as existing products.  
 
 ![API Prod Catalog Flow](./images/A-10-Prod-Catalog.jpg)
 
@@ -37,16 +37,16 @@ If you do not enable **Production Mode** for a catalog, API developers might fin
 > **Note**: You can disable **Production Mode** for catalogs even in production installations, if you do no want to enforce versions for API Products.
 
 #### Do you want to control consumer access to corporate resources?  
-[Managing the application lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.apionprem.doc/capic_app_lifecycle_manage.html) was available in APIC v5. If you have used this feature in APIC v5, you can continue to use it with APIC v2018 *v5 compatible* (v5c) gateway services.
+[Managing the application lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.apionprem.doc/capic_app_lifecycle_manage.html) is available in APIC v5. If you have used this feature in APIC v5, you can continue to use it with API Connect *v5 compatible* (v5c) gateway services.
 
-> **Note**: Application Lifecycle is not currently available in APIC v2018's new gateway service type *API Gateway*.  
+> **Note**: Application Lifecycle is not currently available in API Connect's new gateway service type *API Gateway*.  
 
 
 ![API Prod AppLifecyle Flow](./images/A-14-Prod-AppLifecyle.jpg)
 
 **Orange** API calls from consumer application with approved subscriptions reach the corporate resource. **Blue** API calls from subscriptions without approvals receive response from a dummy endpoint. You will have to encode logic in the gateway script to test the context variable *client.app.lifecycle-state* and direct the request to the appropriate endpoint.
 
-While Application Lifecycle is not available with products deployed to the *API Gateway*, you can restrict subscriptions by [Specifying the visibility of your Product](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.toolkit.doc/task_apim_cli_product_yaml_visibility.html).
+While Application Lifecycle is not currently available with products deployed to the *API Gateway*, you can restrict subscriptions by [Specifying the visibility of your Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.toolkit.doc/task_apim_cli_product_yaml_visibility.html).
 
 ## Versions for API Products & API definitions  
 ### Governance Model  
@@ -83,7 +83,7 @@ API and API Products have different life cycles. The table below illustrates an 
 
 
 **API Version**  
-API Definitions exist within a Provider Organization. See [API Connect concepts](https://www.ibm.com/support/knowledgecenter/SSMNED_2018/com.ibm.apic.overview.doc/capim_overview_apiconnectconcepts.html). API Connect allows you to have multiple versions of the same API which is typical during transitions. During steady states, you should try to have only one version of an API within a Provider Organization.  
+API Definitions exist within a Provider Organization. See [API Connect concepts](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.overview.doc/capim_overview_apiconnectconcepts.html). API Connect allows you to have multiple versions of the same API which is typical during transitions. During steady states, you should try to have only one version of an API within a Provider Organization.  
 
   >**Note**: API and API Definition are synonymous. API belong to a Provider Organization and could be used in zero or many API Products.  
 
