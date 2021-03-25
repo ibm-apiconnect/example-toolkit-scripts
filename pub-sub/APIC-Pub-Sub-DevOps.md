@@ -1,7 +1,7 @@
 # IBM API Connect  
 > ## DevOps for API Products & Consumer Subscriptions  
 >  Ravi Ramnarayan  
->  &copy; IBM v1.46  2021-03-25    
+>  &copy; IBM v1.5  2021-03-25    
 
 ## Goals  
   - Ensure business continuity while publishing new versions of API Products  
@@ -39,13 +39,13 @@ Possible drivers are:
 - For products with a large number of subscriptions, you could to reduce the impact of change on two fronts: split the load on API Connect and handle requests for assistance from smaller groups of business partners.   
 
 ### Sample scripts  
-The following steps implement the [**Simple Scenario**](#Simple-Scenario) and migrate subscriptions using the command `products:migrate-subscriptions`. The shell scripts are in [AVP-team/apic-devapp-workflow/pub-sub](https://github.ibm.com/AVP-team/apic-devapp-workflow/tree/master/pub-sub). The scripts illustrate the use of `apic toolkit` commands. You should modify and enhance them for use in your API Connect installations. For example, you could operate on more than one Consumer Organization in a single run or modify the commands to run within Catalog/Space.   
+The following steps implement the [**Simple Scenario**](#Simple-Scenario) and migrate subscriptions using the command `products:migrate-subscriptions`. The shell scripts are in [example-toolkit-scripts/pub-sub/scripts](./scripts). The scripts illustrate the use of `apic toolkit` commands. You should modify and enhance them for use in your API Connect installations. For example, you could operate on more than one Consumer Organization in a single run or modify the commands to run within Catalog/Space.   
 
-- [`product-subs-for-corg.sh`](https://github.ibm.com/AVP-team/apic-devapp-workflow/blob/master/pub-sub/product-subs-for-corg.sh) Provides a CSV file with
+- [`product-subscriptions-for-corg.sh`](./scripts/product-subscriptions-for-corg.sh) Provides a CSV file with
 > Consumer-Org,App-Name,Source-Product:Version,Plan-Name   
 
   for a given Consumer Organization and Product:Version. You can assess the inventory of subscriptions and plan operations.  
-- [`products-migrate-subscriptions-1.sh`](https://github.ibm.com/AVP-team/apic-devapp-workflow/blob/master/pub-sub/products-migrate-subscriptions-1.sh) Creates the `MIGRATE_SUBSCRIPTION_SUBSET_FILE` for a single Consumer Organization. Source & Target Products are assumed to have one for one, identically named plans. You could modify the file to alter the mapping. To effect the [Simple Scenario](#Simple-Scenario), you would modify the `MIGRATE_SUBSCRIPTION_SUBSET_FILE`:
+- [`products-migrate-subscriptions-1.sh`](./scripts/pub-sub/products-migrate-subscriptions-1.sh) Creates the `MIGRATE_SUBSCRIPTION_SUBSET_FILE` for a single Consumer Organization. Source & Target Products are assumed to have one for one, identically named plans. You could modify the file to alter the mapping. To effect the [Simple Scenario](#Simple-Scenario), you would modify the `MIGRATE_SUBSCRIPTION_SUBSET_FILE`:
   - From: ***product:v1*** / ***plan-A*** ==> ***product:v2*** / ***plan-A***  
   - To: ***product:v1*** / ***plan-A*** ==> to ***product:v2*** / ***plan-B***  
 
@@ -56,7 +56,7 @@ The following steps implement the [**Simple Scenario**](#Simple-Scenario) and mi
 
   The mapping lines above are logical, easy to read statements. For the exact syntax, please see notes in `products-migrate-subscriptions-1.sh`. You must have one entry for each Source Product Plan and the Target Plans should valid.  
 
-- [`products-migrate-subscriptions-2.sh`](https://github.ibm.com/AVP-team/apic-devapp-workflow/blob/master/pub-sub/products-migrate-subscriptions-2.sh) Runs the command `products:migrate-subscriptions` on  `MIGRATE_SUBSCRIPTION_SUBSET_FILE`. The command does *not* change the lifecycle state of the Product. If the Product state was **published**, it will stay the same after the script completes.  
+- [`products-migrate-subscriptions-2.sh`](./scripts/products-migrate-subscriptions-2.sh) Runs the command `products:migrate-subscriptions` on  `MIGRATE_SUBSCRIPTION_SUBSET_FILE`. The command does *not* change the lifecycle state of the Product. If the Product state was **published**, it will stay the same after the script completes.  
 
   > **Recommendation**: Deprecate the Source Product:Version to prevent new subscriptions. Depending on your corporate policies, you could deprecate the Source Product:Version in `products-migrate-subscriptions-1.sh` or in `products-migrate-subscriptions-2.sh`.
 
