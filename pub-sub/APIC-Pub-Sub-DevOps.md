@@ -12,7 +12,7 @@
   - Deprecate and Retire API Products gracefully  
 
 ## Prologue
-This article provides sample code to implement DevOps processes described in [APIC Pub Sub Version](./APIC-Pub-Sub-Version).
+This article provides sample code to implement DevOps processes described in [Governance Models & Version Control for API Products](./APIC-Pub-Sub-Version).
 
 ## <a name="Pub Sub Flow"></a> Pub Sub Flow  
 The goal is to implement devops processes at scale.  
