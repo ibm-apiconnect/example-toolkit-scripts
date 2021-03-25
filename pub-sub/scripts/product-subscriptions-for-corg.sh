@@ -4,7 +4,7 @@
 ## ================================================
 APIC_TOOLKIT="./apic"
 APIC_OUPUT_DIR="./apic-output"
-SERVER=apim.mgmt.dev.apic.ibmlab.test
+SERVER=apim.mgmt.dev.apic.xxxxxx.test
 P_ORG=p1org                 # Provider Organization
 CATALOG=sandbox
 C_ORG=sandbox-corg          # Consumer Organization
