@@ -1,7 +1,7 @@
 # Example Toolkit Scripts
 
 ## *pub-sub* folder:  
-- [Governance Models & Version Control for API Products](./pub-sub/APIC-Pub-Sub-Version.md): Perspective on versions for API Definitions & Products, version number in the API URL and the effect of Subscription Client ID in routing API calls.
+- [Governance Models & Version Control for API Products](./pub-sub/APIC-Pub-Sub-Version.md): Perspective on versions for API Definitions & Products, version number in the API URI and the effect of Subscription Client ID in routing API calls.
 - [DevOps for API Products & Consumer Subscriptions](./pub-sub/APIC-Pub-Sub-DevOps.md): Use case for migrating subscriptions which belong to a Consumer Organization and sample scripts to perform the operation.  
 - *pub-sub* scripts were developed on IBM API Connect v10.0.1.x   
 - Typos / Corrections: Please open github issues
