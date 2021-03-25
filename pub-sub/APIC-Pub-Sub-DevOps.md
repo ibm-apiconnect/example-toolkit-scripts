@@ -45,7 +45,7 @@ The following steps implement the [**Simple Scenario**](#Simple-Scenario) and mi
 > Consumer-Org,App-Name,Source-Product:Version,Plan-Name   
 
   for a given Consumer Organization and Product:Version. You can assess the inventory of subscriptions and plan operations.  
-- [`products-migrate-subscriptions-1.sh`](./scripts/pub-sub/products-migrate-subscriptions-1.sh) Creates the `MIGRATE_SUBSCRIPTION_SUBSET_FILE` for a single Consumer Organization. Source & Target Products are assumed to have one for one, identically named plans. You could modify the file to alter the mapping. To effect the [Simple Scenario](#Simple-Scenario), you would modify the `MIGRATE_SUBSCRIPTION_SUBSET_FILE`:
+- [`products-migrate-subscriptions-1.sh`](./scripts/products-migrate-subscriptions-1.sh) Creates the `MIGRATE_SUBSCRIPTION_SUBSET_FILE` for a single Consumer Organization. Source & Target Products are assumed to have one for one, identically named plans. You could modify the file to alter the mapping. To effect the [Simple Scenario](#Simple-Scenario), you would modify the `MIGRATE_SUBSCRIPTION_SUBSET_FILE`:
   - From: ***product:v1*** / ***plan-A*** ==> ***product:v2*** / ***plan-A***  
   - To: ***product:v1*** / ***plan-A*** ==> to ***product:v2*** / ***plan-B***  
 
