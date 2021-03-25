@@ -1,7 +1,7 @@
 # IBM API Connect  
 > ## DevOps for API Products & Consumer Subscriptions  
 >  Ravi Ramnarayan  
->  &copy; IBM v1.5  2021-03-25    
+>  &copy; IBM v1.52  2021-03-25    
 
 ## Goals  
   - Ensure business continuity while publishing new versions of API Products  
@@ -12,7 +12,7 @@
   - Deprecate and Retire API Products gracefully  
 
 ## Prologue
-This article provides sample code to implement DevOps processes described in [Governance Models & Version Control for API Products](./APIC-Pub-Sub-Version).
+This article provides sample code to implement DevOps processes described in [Governance Models & Version Control for API Products](./APIC-Pub-Sub-Version.md).
 
 ## <a name="Pub Sub Flow"></a> Pub Sub Flow  
 The goal is to implement devops processes at scale.  
