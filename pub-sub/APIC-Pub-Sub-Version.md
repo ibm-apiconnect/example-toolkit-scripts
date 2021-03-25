@@ -1,7 +1,7 @@
 # IBM API Connect
 > ## Governance Models & Version Control for API Products
 >  Ravi Ramnarayan  
->  &copy; IBM v1.3  2021-03-24    
+>  &copy; IBM v1.4  2021-03-25    
 
 
 ## Goals  
@@ -34,7 +34,7 @@ If you do not enable **Production Mode** for a catalog, API developers might fin
 
 ![API Dev Catalog Flow](./images/A-12-Dev-Catalog.jpg)  
 
-> **Note**: You can disable **Production Mode** for catalogs even in production installations, if you do no want to enforce versions for API Products.
+> **Note**: You can disable **Production Mode** for catalogs even in production installations, if you do not want to enforce versions for API Products.
 
 #### Do you want to control consumer access to corporate resources?  
 [Managing the application lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.apionprem.doc/capic_app_lifecycle_manage.html) is available in APIC v5. If you have used this feature in APIC v5, you can continue to use it with API Connect *v5 compatible* (v5c) gateway services.
@@ -127,7 +127,7 @@ You can prove this to yourself:
 
 
 ## Lifecycle mechanics  
-Let's walk through a few scenarios and illustrate commands which can be used for DevOps in Production. The scenarios below traverse Production and Staging environments. You are likely to have different settings in each environments, for example, credentials and back end services. You should ensure the promotion processes accommodate the differences.  
+Let's walk through a few scenarios and illustrate commands which can be used for DevOps in Production. The scenarios below traverse Production and Staging environments. You are likely to have different settings in each environment. For example, credentials and back end services are likely to be different in Production and lower installations. You should ensure the promotion processes accommodate the differences.  
 
 ### Scenario A  
 
@@ -183,7 +183,7 @@ Let's walk through a few scenarios and illustrate commands which can be used for
 
 ## Summary
 - IBM API Connect supports the API Product Lifecyle and helps you tailor different Governance Models for Production & non production installations.  
-- IBM API Connect gives you the option to design your API without embedding the *version number* in the URL. You could include the *version number* in the URL if it suits your business practice.  
+- IBM API Connect gives you the option to design your API without embedding the *version number* in the URI. You could include the *version number* in the URI if it suits your business practice.  
 
 ### Next Step -- DevOps  
 In a future article, we will present how you could manage API Products, Plans and Consumer Subscriptions at scale using DevOps.
