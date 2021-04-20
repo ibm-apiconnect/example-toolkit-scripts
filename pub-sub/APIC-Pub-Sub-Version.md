@@ -1,7 +1,7 @@
 # IBM API Connect
 > ## Governance Models & Version Control for API Products
 >  Ravi Ramnarayan  
->  &copy; IBM v1.4  2021-03-25    
+>  &copy; IBM v1.5  2021-04-20    
 
 
 ## Goals  
@@ -12,18 +12,18 @@
   - Deprecate and Retire API Products gracefully  
 
 ## API Product Lifecycle  
-The diagram below is advertisement to lead you to the core of API management [The Product lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/capim_product_lifecycle.html).  
+The diagram below is advertisement to lead you to the core of API management [The Product lifecycle](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=products-product-lifecycle).  
 
 ![API Product Lifecycle](./images/A-04-ProductLifecycle.jpg)
 
-You are familiar with publishing API Products. You may not have looked at Deprecate and Retire while racing towards implementation. In addition to explicit Deprecation, you can do the same implicitly by [Superseding a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_superseding_a_product.html). Similarly, [Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_replacing_a_product.html) will Retire the existing API Product.
-> **Note**: *[Replacing a Product with another Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/task_replacing_a_product.html)* could be a new version of the same Product or a completely different Product.  
+You are familiar with publishing API Products. You may not have looked at Deprecate and Retire while racing towards implementation. In addition to explicit Deprecation, you can do the same implicitly by [Superseding a Product with another Product](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=product-superseding-another). Similarly, [Replacing a Product with another Product](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=product-replacing-another) will Retire the existing API Product.
+> **Note**: *[Replacing a Product with another Product](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=product-replacing-another)* could be a new version of the same Product or a completely different Product.  
 
 ## API Connect options  
 You can configure API Connect (APIC) to suit your needs.  
 
 #### Do you want strict version control for API Products?  
-[Creating and configuring Catalogs](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.apionprem.doc/create_env.html) contains steps to enable *Production Mode*. Once enabled, you must publish new versions of API Products. You will not be able to publish API Products with the same version number as existing products.  
+[Creating and configuring Catalogs](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=catalogs-creating-configuring) contains steps to enable *Production Mode*. Once enabled, you must publish new versions of API Products. You will not be able to publish API Products with the same version number as existing products.  
 
 ![API Prod Catalog Flow](./images/A-10-Prod-Catalog.jpg)
 
@@ -37,16 +37,15 @@ If you do not enable **Production Mode** for a catalog, API developers might fin
 > **Note**: You can disable **Production Mode** for catalogs even in production installations, if you do not want to enforce versions for API Products.
 
 #### Do you want to control consumer access to corporate resources?  
-[Managing the application lifecycle](https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.apionprem.doc/capic_app_lifecycle_manage.html) is available in APIC v5. If you have used this feature in APIC v5, you can continue to use it with API Connect *v5 compatible* (v5c) gateway services.
+[Managing the application lifecycle](https://www.ibm.com/docs/en/api-connect/5.0.x?topic=apis-managing-application-lifecycle) is available in APIC v5. If you have used this feature in APIC v5, you can continue to use it with API Connect *v5 compatible* (v5c) gateway services.
 
-> **Note**: Application Lifecycle is not currently available in API Connect's new gateway service type *API Gateway*.  
 
 
 ![API Prod AppLifecyle Flow](./images/A-14-Prod-AppLifecyle.jpg)
 
 **Orange** API calls from consumer application with approved subscriptions reach the corporate resource. **Blue** API calls from subscriptions without approvals receive response from a dummy endpoint. You will have to encode logic in the gateway script to test the context variable *client.app.lifecycle-state* and direct the request to the appropriate endpoint.
 
-While Application Lifecycle is not currently available with products deployed to the *API Gateway*, you can restrict subscriptions by [Specifying the visibility of your Product](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.toolkit.doc/task_apim_cli_product_yaml_visibility.html).
+> **Note**: Though Application Lifecycle is not fully documented for the new *API Gateway* service, the context variable `client.app.lifecycle-state` carries `PRODUCTION` or `DEVELOPMENT` when *Application Lifecyle* is enabled for the Catalog.   
 
 ## Versions for API Products & API definitions  
 ### Governance Model  
@@ -60,16 +59,17 @@ The Governance Model recommends operations to effect changes and guidelines to a
 
 >**Note**: The Governance matrix is an approach which you should modify to suit your needs.  
 
-  - Increment the major segment of the version for *API breaking* changes such as changes to API endpoints, invocation parameters or payload syntax. For example, change the version from 1.1.4 -> 2.0.0. The new version of the API could be be published to the UAT and PROD catalogs with subscriptions migrated later. Once all the subscriptions are migrated, the older version of the API should be retired. The sequence of operations could be:
+  - **Major Release**: Increment the major segment of the version for *API breaking* changes such as changes to API endpoints, invocation parameters or payload syntax. For example, change the version from 1.1.4 -> 2.0.0. The new version of the API could be be published to the UAT and PROD catalogs with subscriptions migrated later. Once all the subscriptions are migrated, the older version of the API should be retired. The sequence of operations could be:
     - Publish v2.0.0  
     - Deprecate v1.1.4  
+    > *Note*: Publish **supersede** combines *publish* and *deprecate* in one operation.
     - Migrate subscriptions from v1.1.4 to v2.0.0  
     - Retire v1.1.4  
 
   You can send email notices to consumers to keep them informed.  
 
-  - Increment the minor segment of the version for *non-breaking* changes such as an optional calling parameter. For example, change the version from 1.0.0 -> 1.1.0. You can replace the old version with the new, migrate subscriptions and retire the old version in single operation.  
-  - For bug fixes and/or patches to the API implementation which do not affect the API interface, you may increment the last segment in the version.  
+  - **Minor Release**: Increment the minor segment of the version for *non-breaking* changes such as an optional calling parameter. For example, change the version from 1.0.0 -> 1.1.0. You can replace the old version with the new, migrate subscriptions and retire the old version in single operation.  
+  - **Bug Fix**: For bug fixes and/or patches to the API implementation which do not affect the API interface, you may increment the last segment in the version.  
 
 ### API, API Products & Versions
 API and API Products have different life cycles. The table below illustrates an approach. You can assign the version numbers according to your organizations practices.
@@ -83,7 +83,7 @@ API and API Products have different life cycles. The table below illustrates an 
 
 
 **API Version**  
-API Definitions exist within a Provider Organization. See [API Connect concepts](https://www.ibm.com/support/knowledgecenter/SSMNED_v10/com.ibm.apic.overview.doc/capim_overview_apiconnectconcepts.html). API Connect allows you to have multiple versions of the same API which is typical during transitions. During steady states, you should try to have only one version of an API within a Provider Organization.  
+API Definitions exist within a Provider Organization. See [API Connect concepts](https://www.ibm.com/docs/en/api-connect/10.0.1.x?topic=overview-api-connect-concepts). API Connect allows you to have multiple versions of the same API which is typical during transitions. During steady states, you should try to have only one version of an API within a Provider Organization.  
 
   >**Note**: API and API Definition are synonymous. API belong to a Provider Organization and could be used in zero or many API Products.  
 
@@ -103,7 +103,7 @@ API Connect helps you provide a smooth experience for your consumers. You can im
 - ***api:v1*** is in product ***product:v1***, ***api:v2*** is in product ***product:v2***  
 - both products are in the same Provider Organization & Catalog  
 - both products are active and require subscriptions to plans  
-- both ***api:v1*** & ***api:v2*** require ClientId in the HTTP header  
+- both ***api:v1*** & ***api:v2*** require *ClientId* in the HTTP header  
 - ***consumer-app-1*** subscribes to ***product:v1-plan***, ***consumer-app-2*** subscribes to ***product:v2-plan***  
 
 >***Q***: Will calls from ***consumer-1*** reach ***api:v1*** & calls from ***consumer-2*** reach ***api:v2*** ?    
@@ -111,9 +111,9 @@ API Connect helps you provide a smooth experience for your consumers. You can im
 >***Q***: Really, even though the plan names are the same?  
 >***A***: Yes. ***api:v1*** & ***api:v2*** have different Client ID's which are tied to different subscriptions.  
 
-You can prove this to yourself:
+Yes, this is hard to believe. I had to prove it to myself. Should you?
 - Clone ***api:v1*** to ***api:v2***  
-  Invoke a different back end service which delivers a different result
+  Invoke a back end service which delivers a different result
 - Clone ***product:v1*** to ***product:v2***   
   Relate ***product:v2*** to ***api:v2***  
 - Publish both products to the same Gateway Service    
