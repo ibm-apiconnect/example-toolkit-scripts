@@ -1,5 +1,8 @@
 # Example Toolkit Scripts
 
+### *change-owner* folder:
+- [Change Owner of Organization, Catalog or Space](./change-owner/ChangeOwner.md).
+
 ## *hybrid-gwy* folder
 - [TLS for IBM API Connect & Hybrid DataPower Gateways](./hybrid-gwy/TLS-for-Hybrid-DataPowerGateway.md): The hybrid API Gateway requires precise TLS orchestration in API Connect and DataPower.
 - *hybrid-gwy* scripts implement building blocks and might be useful for DevOps oriented IBM clients. The scripts were verified on IBM API Connect (k8s) v10.0.3.
