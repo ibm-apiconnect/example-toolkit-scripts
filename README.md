@@ -1,16 +1,19 @@
 # Example Toolkit Scripts
 
-## *hybrid-gwy* folder
+### *change-owner* folder:
+Provides steps to change the owner of an Organization, Catalog or Space.
+
+### *hybrid-gwy* folder:
 - [TLS for IBM API Connect & Hybrid DataPower Gateways](./hybrid-gwy/TLS-for-Hybrid-DataPowerGateway.md): The hybrid API Gateway requires precise TLS orchestration in API Connect and DataPower.
 - *hybrid-gwy* scripts implement building blocks and might be useful for DevOps oriented IBM clients. The scripts were verified on IBM API Connect (k8s) v10.0.3.
 
-## *pub-sub* folder:  
+### *pub-sub* folder:  
 - [Governance Models & Version Control for API Products](./pub-sub/APIC-Pub-Sub-Version.md): Perspective on versions for API Definitions & Products, version number in the API URI and the effect of Subscription Client ID in routing API calls.
 - [DevOps for API Products & Consumer Subscriptions](./pub-sub/APIC-Pub-Sub-DevOps.md): Use case for migrating subscriptions which belong to a Consumer Organization and sample scripts to perform the operation.  
 - *pub-sub* scripts were developed on IBM API Connect v10.0.1.x   
 - Typos / Corrections: Please open github issues
 
-## *bash* and *batch* folders:  
+### *bash* and *batch* folders:  
 The scripts demonstrate the use of the toolkit commands to build and remove API Connect artifacts. These files **must** be executed in the order listed below.
 
 - **bash** scripts run in a Unix/Linux/Cygwyn bash shell
