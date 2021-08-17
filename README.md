@@ -5,7 +5,7 @@
 
 ### [*hybrid-gwy*](./hybrid-gwy) folder:
 - [TLS for IBM API Connect & Hybrid DataPower Gateways](./hybrid-gwy/TLS-for-Hybrid-DataPowerGateway.md): The hybrid API Gateway requires precise TLS orchestration in API Connect and DataPower.
-- Sample scripts: [create-keystore](./hybrid-gwy/create-keystore.sh), [create-truststore](./hybrid-gwy/create-truststore.sh), [create-client-TLS](./hybrid-gwy/create-client-TLS), [create-server-TLS](./hybrid-gwy/create-server-TLS.sh) and [update-API-endpoint-TLS](./hybrid-gwy/update-API-endpoint-TLS.sh). The scripts will be useful for DevOps oriented IBM clients. The scripts were verified on IBM API Connect (k8s) v10.0.3.
+- Sample scripts: [create-keystore](./hybrid-gwy/create-keystore.sh), [create-truststore](./hybrid-gwy/create-truststore.sh), [create-client-TLS](./hybrid-gwy/create-client-TLS.sh), [create-server-TLS](./hybrid-gwy/create-server-TLS.sh) and [update-API-endpoint-TLS](./hybrid-gwy/update-API-endpoint-TLS.sh). The scripts will be useful for DevOps oriented IBM clients. The scripts were verified on IBM API Connect (k8s) v10.0.3.
 
 ### [*pub-sub*](./pub-sub) folder:  
 - [Governance Models & Version Control for API Products](./pub-sub/APIC-Pub-Sub-Version.md): Perspective on versions for API Definitions & Products, version number in the API URI and the effect of Subscription Client ID in routing API calls.
