@@ -6,17 +6,17 @@
 # realm "admin/default-idp-1", server "<platform-api endpoint>"
 ## ================================================
 APIC_TOOLKIT="./apic"
-APIC_OUPUT_DIR="./apic-output"
+APIC_OUTPUT_DIR="./apic-output"
 # -----------------------------------------
 # Should be the "platform-api" endpoint
-SERVER=platform.mgmt.dev.apic.xxxxx.test
+SERVER=platform.mgmt.dev.apic.ibmlab.test
 ADMIN_ORG=admin                 # admin Organization
 # -----------------------------------------
 # See companion document "TLS-for-Hybrid-DataPowerGateway.md" for definitions
 # of certificate files.
 # -----------------------------------------
 CERT_PEM="my-ca-cert.pem"
-PATH_2_PEM="<replace with path to folder with pem files>"
+PATH_2_PEM="/home/rramnara/git/internal-ibm/apic-hybrid-gwy/Hybrid-TLS"
 # -----------------------------------------
 # You SHOULD enter a unique, lower-case value for TRUSTSTORE_NAME. Otherwise, you will
 # create duplicate entries with TRUSTSTORE_TITLE if you run the script more than once.
@@ -28,15 +28,15 @@ TRUSTSTORE_FILE="truststore-file.json"
 ## ================================================
 # Remove old output files
 # -----------------------------------------
-if [[ ! -d "${APIC_OUPUT_DIR}" ]];
+if [[ ! -d "${APIC_OUTPUT_DIR}" ]];
 then
-  # Create APIC_OUPUT_DIR directory if it does not exist.
-  mkdir ${APIC_OUPUT_DIR}
+  # Create APIC_OUTPUT_DIR directory if it does not exist.
+  mkdir ${APIC_OUTPUT_DIR}
 else
-  # Delete APIC_OUPUT_DIR directory and contents
-  rm -rf ${APIC_OUPUT_DIR}
-  # Create APIC_OUPUT_DIR directory
-  mkdir ${APIC_OUPUT_DIR}
+  # Delete APIC_OUTPUT_DIR directory and contents
+  rm -rf ${APIC_OUTPUT_DIR}
+  # Create APIC_OUTPUT_DIR directory
+  mkdir ${APIC_OUTPUT_DIR}
 fi
 ## ================================================
 # Generate TRUSTSTORE_NAME to avoid creating "false" duplicates
@@ -62,5 +62,5 @@ req_json_body='{"title":"'${TRUSTSTORE_TITLE}'","name":"'${TRUSTSTORE_NAME}'","s
 echo ${req_json_body} > ${TRUSTSTORE_FILE}
 
 # -----------------------------------------
-${APIC_TOOLKIT} truststores:create --org ${ADMIN_ORG} --server ${SERVER} --format json --output ${APIC_OUPUT_DIR} ${TRUSTSTORE_FILE}
+${APIC_TOOLKIT} truststores:create --org ${ADMIN_ORG} --server ${SERVER} --format json --output ${APIC_OUTPUT_DIR} ${TRUSTSTORE_FILE}
 ## ================================================

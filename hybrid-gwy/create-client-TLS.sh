@@ -6,10 +6,10 @@
 # realm "admin/default-idp-1", server "<platform-api endpoint>"
 ## ================================================
 APIC_TOOLKIT="./apic"
-APIC_OUPUT_DIR="./apic-output"
+APIC_OUTPUT_DIR="./apic-output"
 # -----------------------------------------
 # Should be the "platform-api" endpoint
-SERVER=platform.mgmt.dev.apic.xxxxx.test
+SERVER=platform.mgmt.dev.apic.ibmlab.test
 ADMIN_ORG=admin                 # admin Organization
 # -----------------------------------------
 # Enter NAME for Key & Trust Stores, not TITLE
@@ -41,36 +41,36 @@ TLS_CLIENT_PROFILE_FILE="tls_client_profile_file.json"
 ## ================================================
 # Remove old output files
 # -----------------------------------------
-if [[ ! -d "${APIC_OUPUT_DIR}" ]];
+if [[ ! -d "${APIC_OUTPUT_DIR}" ]];
 then
-  # Create APIC_OUPUT_DIR directory if it does not exist.
-  mkdir ${APIC_OUPUT_DIR}
+  # Create APIC_OUTPUT_DIR directory if it does not exist.
+  mkdir ${APIC_OUTPUT_DIR}
 else
-  # Delete APIC_OUPUT_DIR directory and contents
-  rm -rf ${APIC_OUPUT_DIR}
-  # Create APIC_OUPUT_DIR directory
-  mkdir ${APIC_OUPUT_DIR}
+  # Delete APIC_OUTPUT_DIR directory and contents
+  rm -rf ${APIC_OUTPUT_DIR}
+  # Create APIC_OUTPUT_DIR directory
+  mkdir ${APIC_OUTPUT_DIR}
 fi
 ## ================================================
 # Get the URL for Key & Trust Stores to compose the request
 # -----------------------------------------
-${APIC_TOOLKIT} keystores:get --org ${ADMIN_ORG} --server ${SERVER} --format json --fields "name,url" --output ${APIC_OUPUT_DIR} ${KEYSTORE_NAME}
+${APIC_TOOLKIT} keystores:get --org ${ADMIN_ORG} --server ${SERVER} --format json --fields "name,url" --output ${APIC_OUTPUT_DIR} ${KEYSTORE_NAME}
 
-KEYSTORE_URL=$( cat ${APIC_OUPUT_DIR}/${KEYSTORE_NAME}.json | jq ' .url ' )
+KEYSTORE_URL=$( cat ${APIC_OUTPUT_DIR}/${KEYSTORE_NAME}.json | jq ' .url ' )
 KEYSTORE_URL=$( echo ${KEYSTORE_URL} | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" )    # Strip quote marks
 
-${APIC_TOOLKIT} truststores:get --org ${ADMIN_ORG} --server ${SERVER} --format json --fields "name,url" --output ${APIC_OUPUT_DIR} ${TRUSTSTORE_NAME}
+${APIC_TOOLKIT} truststores:get --org ${ADMIN_ORG} --server ${SERVER} --format json --fields "name,url" --output ${APIC_OUTPUT_DIR} ${TRUSTSTORE_NAME}
 
-TRUSTSTORE_URL=$( cat ${APIC_OUPUT_DIR}/${TRUSTSTORE_NAME}.json | jq ' .url ' )
+TRUSTSTORE_URL=$( cat ${APIC_OUTPUT_DIR}/${TRUSTSTORE_NAME}.json | jq ' .url ' )
 TRUSTSTORE_URL=$( echo ${TRUSTSTORE_URL} | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" )    # Strip quote marks
 
 # -----------------------------------------
 req_json_body='{"title":"'${TLS_CLIENT_PROFILE_TITLE}'","name":"'${TLS_CLIENT_PROFILE_NAME}'","version":"'${VERSION}'","summary":"'${SUMMARY}'","insecure_server_connections":'${INSECURE_SERVER_CONNECTIONS}',"server_name_indication":'${SERVER_NAME_INDICATION}',"keystore_url":"'${KEYSTORE_URL}'","truststore_url":"'${TRUSTSTORE_URL}'","protocols":'${PROTOCOLS}',"ciphers":'${CIPHERS}'}'
 
-echo ${req_json_body} > ${APIC_OUPUT_DIR}/${TLS_CLIENT_PROFILE_FILE}
+echo ${req_json_body} > ${APIC_OUTPUT_DIR}/${TLS_CLIENT_PROFILE_FILE}
 
 # -----------------------------------------
-${APIC_TOOLKIT} tls-client-profiles:create --org ${ADMIN_ORG} --server ${SERVER} --format json --output ${APIC_OUPUT_DIR} ${APIC_OUPUT_DIR}/${TLS_CLIENT_PROFILE_FILE}
+${APIC_TOOLKIT} tls-client-profiles:create --org ${ADMIN_ORG} --server ${SERVER} --format json --output ${APIC_OUTPUT_DIR} ${APIC_OUTPUT_DIR}/${TLS_CLIENT_PROFILE_FILE}
 ## ================================================
 # You could validate success by examining the output file or by retrieving the
 # URL for the TLS Client profile
