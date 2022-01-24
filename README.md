@@ -3,6 +3,10 @@
 ### [*change-owner*](./change-owner) folder:
 - Change the owner of an Organization, Catalog or Space. IBM API Connect v10 web UI contains these functions.
 
+### *Docs*
+- [v10 Command Line Intro](./docs/CommandLine-Intro.md)
+- [v10 REST API: First Steps](./docs/REST-API-FirstSteps.md)
+
 ### *hybrid-gwy*
 - [Hybrid Gateways](https://github.com/ibm-apiconnect/apic-hybrid-cloud-enablement/blob/master/docs-and-tools/hybrid-gwy/README.md) contains the document and supporting scripts to set up a hybrid API Gateway. The scripts will be useful for DevOps oriented IBM clients. The scripts were verified on IBM API Connect (k8s) v10.0.3.
 
