@@ -41,6 +41,7 @@
 Log into API Connect CLI as user with (adequate) `admin` privileges.  
 
 - Input file  
+
   ```
   $ cat myapp1.json
   {
@@ -49,7 +50,7 @@ Log into API Connect CLI as user with (adequate) `admin` privileges.
     "client_secret": "myapp1secret",
     "client_type": "toolkit"
   }  
-```  
+  ```  
 
   Why did we use `"client_type": "toolkit"`? Run the following command to list the complete set:  
   `$ apic registrations:list -s platform.mgmt.dev.apic.xxxxx.xxx`  
